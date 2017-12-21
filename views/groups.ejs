@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav">
               
               <li><a href="/password">Edit Password</a></li>
-              <li><a href="groups">Manage Groups</a></li>
+              <li><a href="groups"> Groups</a></li>
               <li><a  href="/export" >Export contacts</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -58,8 +58,8 @@
               <tr>
                 
                 <th>Group Name</th>
-                <th>Delete</th>
                 <th>Manage</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -67,8 +67,8 @@
               <tr>
                 
                 <td><%= groups[i].name %></td>
+                <td><form action="/managegroup" method="get"><input name="id" value="<%= groups[i]._id %>" hidden><button class="btn btn-success">View</button></form></td>
                 <td><form action="/deletegroup" method="post"><input name="id" value="<%= groups[i]._id %>" hidden><button class="btn btn-danger">Delete</button></form></td>
-                <td><form action="/managegroup" method="get"><input name="id" value="<%= groups[i]._id %>" hidden><button class="btn btn-warning">Manage</button></form></td>
               </tr>
               <% } %>
             </tbody>

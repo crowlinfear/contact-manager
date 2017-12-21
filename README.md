@@ -30,6 +30,8 @@ https://docs.mongodb.com/manual/installation/
 Clone the repo and cd into it, then we install the dependencies 
 
 ```
+git clone https://github.com/crowlinfear/contact-manager 
+cd contact-manager
 npm install
 
 ```

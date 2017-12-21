@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Contact Manager</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            
+            <a class="navbar-brand" href="/home">Contact Manager</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              
+              <li><a href="/password">Edit Password</a></li>
+              <li><a href="/groups">Manage Groups</a></li>
+              <li><a  href="/export" >Export contacts</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+             
+              <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav> 
+  
+
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Add Contact</h3>
+    </div>
+    <div class="panel-body">
+        <form action="/addcontact" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="inputname4">Nom</label>
+                <input type="text" class="form-control" id="inputname4" placeholder="Nom" name="name" required>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputPrénom4">Prénom</label>
+                <input type="text" class="form-control" id="inputPrénom4" placeholder="Prénom" name="Lname" required>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="inputMobile4">Mobile</label>
+                  <input type="text" class="form-control" id="inputMobile4" placeholder="Mobile" name="mobile" minlength="10" maxlength="10" required>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputEmail4">Email</label>
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="email" name="email" required>
+                </div>
+              </div>
+              <input type="submit" class="btn btn-primary" value="Add contact">
+        </form>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Contact List</h3>
+    </div>
+    <div class="panel-body">
+        <table id="contacts" class="table table-striped">
+            <thead>
+              <tr>
+                
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Delete</th>
+                <th>Edit</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i < data.length; i++) { %>
+              <tr>
+                
+                <td><%= data[i].name %></td>
+                <td><%= data[i].Lname %></td>
+                <td><%= data[i].mobile %></td>
+                <td><%= data[i].email %></td>
+                <td hidden><%= data[i]._id %></td>
+                <td><form action="/deletecontact" method="post"><input name="id" value="<%= data[i]._id %>" hidden><button class="btn btn-danger">delete</button></form></td>
+                <td><button class="btn btn-warning editbtn">Edit</button></td>
+                
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+    </div>
+  </div>
+  <div id="editing" class="panel panel-default" style="display:none">
+    <div class="panel-heading">
+      <h3>Edit Contact</h3>
+    </div>
+    <div class="panel-body">
+        <form action="/editcontact" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="inputname4">Nom</label>
+                <input type="text" class="form-control" id="name" placeholder="Nom" name="name" required>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputPrénom4">Prénom</label>
+                <input type="text" class="form-control" id="Prénom" placeholder="Prénom" name="Lname" required>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="inputMobile4">Mobile</label>
+                  <input type="text" class="form-control" id="mobile" placeholder="Mobile" name="mobile" minlength="10" maxlength="10" required>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputEmail4">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+                </div>
+              </div>
+              <input name="id" hidden id="id" value>
+              <input type="submit" class="btn btn-success" value="Edit contact">
+        </form>
+    </div>
+  </div>
+</div>
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="javascripts/home.js"></script>
+</html>

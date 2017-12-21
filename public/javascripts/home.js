@@ -12,6 +12,8 @@ $( document ).ready(function() {
     $('#editing').show();   
    
    })
-  
+  $('#discard').click(function(){
+    $('#editing').hide();
+  })
 });
 
